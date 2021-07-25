@@ -274,6 +274,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     RealmeParts
 
+# Recovery
+PRODUCT_PACKAGES += \
+    init.recovery.qcom.rc
+
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
