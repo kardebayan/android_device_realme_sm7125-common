@@ -343,6 +343,8 @@ firmware_directories /mnt/vendor/persist/ /vendor/firmware_mnt/image/
 
 # Add device block for FRP
 /dev/block/platform/soc/7824900.sdhci/by-name/config    0600   system     system
+#sai.mukkundan@SYSTEM,2022/03/04, ALM-3184758 Fix oem unlock status persist issue
+/dev/block/platform/soc/1d84000.ufshc/by-name/config    0600   system     system
 /dev/block/platform/soc/7464900.sdhci/by-name/frp       0600   system     system
 /dev/block/platform/soc/624000.ufshc/by-name/frp        0600   system     system
 /dev/block/platform/soc/1da4000.ufshc/by-name/frp       0600   system     system

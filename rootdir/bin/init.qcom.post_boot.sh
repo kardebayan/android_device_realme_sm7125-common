@@ -599,7 +599,7 @@ function oppo_configure_zram_parameters() {
     MemTotalStr=`cat /proc/meminfo | grep MemTotal`
     MemTotal=${MemTotalStr:16:8}
 
-    echo lz4 > /sys/block/zram0/comp_algorithm
+    echo zstd > /sys/block/zram0/comp_algorithm
     echo 160 > /proc/sys/vm/swappiness
     echo 60 > /proc/sys/vm/direct_swappiness
     echo 0 > /proc/sys/vm/page-cluster
@@ -621,25 +621,51 @@ function oppo_configure_zram_parameters() {
             echo 1342177280 > /sys/block/zram0/disksize
 	    echo 2 > /sys/module/lowmemorykiller/parameters/almk_totalram_ratio
         elif [ $MemTotal -le 3145728 ]; then
-            #config 1GB+512MB zramsize with ramsize 3GB
-            echo 1610612736 > /sys/block/zram0/disksize
+            #ifdef VENDOR_EDIT
+            #config 1.9GB zramsize with ramsize 3GB
+            echo 2040109466 > /sys/block/zram0/disksize
 	    echo 3 > /sys/module/lowmemorykiller/parameters/almk_totalram_ratio
+            #config 680M almk threshold with ramsize 3GB
+            echo 174080 > /sys/module/lowmemorykiller/parameters/almk_totalram_threshold_pages
         elif [ $MemTotal -le 4194304 ]; then
-            #config 2GB+512MB zramsize with ramsize 4GB
+            #config 2.5GB zram size with memory 4 GB
             echo 2684354560 > /sys/block/zram0/disksize
 	    echo 4 > /sys/module/lowmemorykiller/parameters/almk_totalram_ratio
+            #config 800M almk threshold with ramsize 4GB
+            echo 204800 > /sys/module/lowmemorykiller/parameters/almk_totalram_threshold_pages
         elif [ $MemTotal -le 6291456 ]; then
-            #config 3GB zramsize with ramsize 6GB
+            #config 3GB zram size with memory 6 GB
             echo 3221225472 > /sys/block/zram0/disksize
 	    echo 6 > /sys/module/lowmemorykiller/parameters/almk_totalram_ratio
+            #config 1G almk threshold with ramsize 6GB
+            echo 262144 > /sys/module/lowmemorykiller/parameters/almk_totalram_threshold_pages
         else
-            #config 4GB zramsize with ramsize >=8GB
+            #config 4GB zram size with memory greater than 6GB
             echo 4294967296 > /sys/block/zram0/disksize
 	    echo 8 > /sys/module/lowmemorykiller/parameters/almk_totalram_ratio
+            #config 1.2G almk threshold with memory greater than 6GB
+            echo 314572 > /sys/module/lowmemorykiller/parameters/almk_totalram_threshold_pages
         fi
         mkswap /dev/block/zram0
         swapon /dev/block/zram0 -p 32758
     fi
+}
+
+function oplus_configure_hybridswap() {
+	kernel_version=`uname -r`
+
+	if [[ "$kernel_version" == "5.10"* ]]; then
+		echo 160 > /sys/module/oplus_bsp_zram_opt/parameters/vm_swappiness
+	else
+		echo 160 > /sys/module/zram_opt/parameters/vm_swappiness
+	fi
+
+	echo 160 > /proc/sys/vm/swappiness
+	echo 0 > /proc/sys/vm/page-cluster
+
+	# FIXME: set system memcg pata in init.kernel.post_boot-lahaina.sh temporary
+	echo 500 > /dev/memcg/system/memory.app_score
+	echo systemserver > /dev/memcg/system/memory.name
 }
 #endif /*VENDOR_EDIT*/
 function configure_read_ahead_kb_values() {
@@ -661,6 +687,17 @@ function configure_read_ahead_kb_values() {
         echo 512 > /sys/block/mmcblk0rpmb/bdi/read_ahead_kb
         for dm in $dmpts; do
             echo 512 > $dm
+            dm_dev=`echo $dm |cut -d/ -f4`
+            if [ "$dm_dev" = "" ]; then
+                is_erofs=""
+            else
+                is_erofs=`mount |grep erofs |grep "${dm_dev} "`
+            fi
+            if [ "$is_erofs" = "" ]; then
+                echo 512 > $dm
+            else
+                echo 128 > $dm
+            fi
         done
     fi
 }
@@ -722,7 +759,17 @@ if [ "$ProductName" == "msmnile" ] || [ "$ProductName" == "kona" ] || [ "$Produc
       # Enable ZRAM
 #ifdef VENDOR_EDIT
 #/*Huacai.Zhou@Tech.Kernel.MM, add oppo zram opt*/
-       oppo_configure_zram_parameters
+    # For vts test which has replace system.img
+    ls -ld /product | grep '\-\>'
+    if [ $? -eq 0 ]; then
+        oppo_configure_zram_parameters
+    else
+        if [ -f /sys/block/zram0/hybridswap_enable ]; then
+            oplus_configure_hybridswap
+        else
+            oppo_configure_zram_parameters
+        fi
+    fi
 #else
 #      configure_zram_parameters
 #endif /*VENDOR_EDIT*/
@@ -842,10 +889,21 @@ else
 
     # Disable wsf for all targets beacause we are using efk.
     # wsf Range : 1..1000 So set to bare minimum value 1.
-    echo 1 > /proc/sys/vm/watermark_scale_factor
+    #chang by realme to adjust parameters 2023.1.30
+    echo 16 > /proc/sys/vm/watermark_scale_factor
 #ifdef VENDOR_EDIT
 #/*Huacai.Zhou@Tech.Kernel.MM, add oppo zram opt*/
-	oppo_configure_zram_parameters
+    # For vts test which has replace system.img
+    ls -ld /product | grep '\-\>'
+    if [ $? -eq 0 ]; then
+        oppo_configure_zram_parameters
+    else
+        if [ -f /sys/block/zram0/hybridswap_enable ]; then
+            oplus_configure_hybridswap
+        else
+            oppo_configure_zram_parameters
+        fi
+    fi
 #else
     #configure_zram_parameters
 #endif /*VENDOR_EDIT*/

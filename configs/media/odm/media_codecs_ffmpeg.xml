@@ -20,7 +20,7 @@
             <Limit name="channel-count" max="8" />
             <Limit name="sample-rate" ranges="8000-192000" />
         </MediaCodec>
-        <MediaCodec name="OMX.ffmpeg.vtrial.decoder" type="video/ffmpeg">
+        <MediaCodec name="OMX.ffmpeg.vtrial.decoder" type="video/ffmpeg" rank="1024" >
             <Limit name="size" min="2x2" max="2048x2048" />
             <Limit name="alignment" value="2x2" />
             <Feature name="adaptive-playback" />

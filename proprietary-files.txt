@@ -1,29 +1,31 @@
+# Device proprietary files - from qssi-user 13 TP1A.220905.001 1714035646417 release-keys (RMX3081_11_F.10), unless pinned
+
 # ACDB Data
-vendor/etc/acdbdata/IDP/IDP_Hdmi_cal.acdb
-vendor/etc/acdbdata/IDP/IDP_General_cal.acdb
-vendor/etc/acdbdata/IDP/IDP_Speaker_cal.acdb
-vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_General_cal.acdb
-vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Headset_cal.acdb
-vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Handset_cal.acdb
-vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Speaker_cal.acdb
 vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Bluetooth_cal.acdb
-vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_workspaceFile.qwsp
-vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Hdmi_cal.acdb
+vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_General_cal.acdb
 vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Global_cal.acdb
-vendor/etc/acdbdata/IDP/IDP_Headset_cal.acdb
-vendor/etc/acdbdata/IDP/IDP_workspaceFile.qwsp
+vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Handset_cal.acdb
+vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Hdmi_cal.acdb
+vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Headset_cal.acdb
+vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_Speaker_cal.acdb
+vendor/etc/acdbdata/IDP/atoll-wcd937x-snd-card/IDP_WCD937X_workspaceFile.qwsp
 vendor/etc/acdbdata/IDP/IDP_Bluetooth_cal.acdb
+vendor/etc/acdbdata/IDP/IDP_General_cal.acdb
 vendor/etc/acdbdata/IDP/IDP_Global_cal.acdb
 vendor/etc/acdbdata/IDP/IDP_Handset_cal.acdb
-vendor/etc/acdbdata/adsp_avs_config.acdb
+vendor/etc/acdbdata/IDP/IDP_Hdmi_cal.acdb
+vendor/etc/acdbdata/IDP/IDP_Headset_cal.acdb
+vendor/etc/acdbdata/IDP/IDP_Speaker_cal.acdb
+vendor/etc/acdbdata/IDP/IDP_workspaceFile.qwsp
+vendor/etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_General_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Global_cal.acdb
 vendor/etc/acdbdata/QRD/QRD_Handset_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
 vendor/etc/acdbdata/QRD/QRD_Headset_cal.acdb
 vendor/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
-vendor/etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
-vendor/etc/acdbdata/QRD/QRD_General_cal.acdb
-vendor/etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
 vendor/etc/acdbdata/QRD/QRD_workspaceFile.qwsp
-vendor/etc/acdbdata/QRD/QRD_Global_cal.acdb
+vendor/etc/acdbdata/adsp_avs_config.acdb
 
 # Alarm
 vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service
@@ -98,29 +100,6 @@ vendor/lib/soundfx/libasphere.so
 vendor/lib64/soundfx/libasphere.so
 vendor/lib/libssrec.so
 vendor/lib64/libssrec.so
-odm/lib/libdapparamstorage.so
-odm/lib64/libdapparamstorage.so
-odm/lib/libdlbdsservice.so
-odm/lib64/libdlbdsservice.so
-odm/lib/libqtigef.so
-odm/lib64/libqtigef.so
-
-# Audio Dolby
--odm/etc/vintf/manifest/manifest_dax_dolby.xml
-odm/etc/dolby/multimedia_dolby_dax_default.xml
-odm/etc/init/vendor.dolby.hardware.dms@2.0-service.rc
-odm/bin/hw/vendor.dolby.hardware.dms@2.0-service
-odm/lib/libstagefright_soft_ddpdec.so
-odm/lib/libstagefrightdolby.so
-odm/lib/libdapparamstorage.so
-odm/lib/libstagefright_soft_ac4dec.so
-odm/lib/vendor.dolby.hardware.dms@2.0-impl.so
-odm/lib/vendor.dolby.hardware.dms@2.0.so
-odm/lib/libdlbdsservice.so
-odm/lib64/libdapparamstorage.so
-odm/lib64/vendor.dolby.hardware.dms@2.0-impl.so
-odm/lib64/vendor.dolby.hardware.dms@2.0.so
-odm/lib64/libdlbdsservice.so
 
 # Audio Sound FX
 vendor/lib/soundfx/libaudiopreprocessing.so
@@ -139,10 +118,6 @@ vendor/lib64/soundfx/libshoebox.so
 vendor/lib64/soundfx/libqcompostprocbundle.so
 vendor/lib64/soundfx/libqcomvisualizer.so
 vendor/lib64/soundfx/libqcomvoiceprocessing.so
-odm/lib/soundfx/libhwdap.so
-odm/lib/soundfx/libswdap.so
-odm/lib64/soundfx/libhwdap.so
-odm/lib64/soundfx/libswdap.so
 
 # AudioHal Ext
 system_ext/lib/vendor.qti.hardware.audiohalext@1.0.so
@@ -180,12 +155,6 @@ vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
 vendor/lib64/libbluetooth_audio_session_qti.so
 vendor/lib64/hw/audio.bluetooth_qti.default.so
 vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
-odm/lib/hw/vendor.oplus.hardware.bluetooth_audio@1.0-impl.so
-odm/lib/oplus_btaudio_offload_if.so
-odm/lib/vendor.oplus.hardware.bluetooth_audio@1.0.so
-odm/lib64/hw/vendor.oplus.hardware.bluetooth_audio@1.0-impl.so
-odm/lib64/oplus_btaudio_offload_if.so
-odm/lib64/vendor.oplus.hardware.bluetooth_audio@1.0.so
 
 # Camera
 vendor/lib/libcamera2ndk_vendor.so
@@ -199,7 +168,6 @@ vendor/lib/libmm-hdcpmgr.so
 vendor/lib/libnanopb.so
 vendor/lib/libnative-api.so
 vendor/lib/liboemaids_vendor.so
-vendor/lib/libp61-jcop-kit.so
 vendor/lib/libpvr.so
 vendor/lib/libqdma_file_agent.so
 vendor/lib/libqti-utils.so
@@ -231,9 +199,7 @@ vendor/lib64/libmm-hdcpmgr.so
 vendor/lib64/libnanopb.so
 vendor/lib64/libnative-api.so
 vendor/lib64/liboemaids_vendor.so
-vendor/lib64/libp61-jcop-kit.so
 vendor/lib64/libpvr.so
-vendor/lib64/libqsap_sdk.so
 vendor/lib64/libqti-utils.so
 vendor/lib64/libreffeature.so
 vendor/lib64/librmp.so
@@ -675,8 +641,9 @@ vendor/firmware/ipa_fws.elf
 vendor/firmware/ipa_fws.mdt
 
 # Keymaster
-vendor/bin/hw/android.hardware.keymaster@4.0-service-qti
-vendor/etc/init/android.hardware.keymaster@4.0-service-qti.rc
+vendor/bin/hw/android.hardware.keymaster@4.1-service-qti
+vendor/etc/init/android.hardware.keymaster@4.1-service-qti.rc
+vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-service-default-qti.xml
 vendor/lib/libkeymasterdeviceutils.so
 vendor/lib/libkeymasterutils.so
 vendor/lib/libqcbor.so
@@ -768,18 +735,6 @@ vendor/lib64/unnhal-acc-adreno.so
 vendor/lib64/unnhal-acc-common.so
 vendor/lib64/unnhal-acc-hta.so
 vendor/lib64/unnhal-acc-hvx.so
-
-# NFC - from RMX2170EU
-odm/etc/init/init.SN100x.nfc.rc|0370b2ce79223865f00bbb6228a06f30b169980e
-vendor/etc/libnfc-nci.conf|1b8111586cfc50afdc1cefd050984bbbb7f60d40
-odm/etc/libnfc-nxp-pnscr.conf|c9bbf87032cf73dc0b76793a15eff838f11ebf84
-odm/etc/libnfc-nxp-pnscr.conf:odm/etc/libnfc-nxp.conf|c9bbf87032cf73dc0b76793a15eff838f11ebf84
-odm/etc/libnfc-nxp-pnscr.conf:vendor/etc/libnfc-nxp.conf|c9bbf87032cf73dc0b76793a15eff838f11ebf84
-odm/lib/libpn553_fw.so|a8e29cc3ebb2e0df0fb505fc2da9c69a015680fb
-odm/lib/libpn557_fw.so|5fd4d17960d258563557d47d70c4d9d11a79fd15
-odm/lib/libpnscr2.so|eed3e854c85eefcc4da4a3df283a95d249497fa8
-odm/lib/libsn100u_fw.so|4adda2c9449cdc8f66fc3c653153f8b69c7dc78c
-odm/lib64/libpnscr2.so|36ffef654ac4918d9391a0d85d1d5378c56fe819
 
 # Oppo Init rc
 odm/etc/init/init.network.rc
@@ -919,10 +874,8 @@ vendor/lib64/libqmiservices.so
 vendor/lib64/libqsocket.so
 
 # Radio
--system_ext/app/DeviceInfo/DeviceInfo.apk
 -system_ext/app/QtiTelephonyService/QtiTelephonyService.apk
 system_ext/etc/permissions/qcrilhook.xml
-system_ext/etc/permissions/telephonyservice.xml
 system_ext/framework/qcrilhook.jar
 -system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/ATFWD-daemon
@@ -1256,22 +1209,12 @@ vendor/lib/libGPQTEEC_vendor.so
 vendor/lib/libGPTEE_vendor.so
 vendor/lib/libQTEEConnector_vendor.so
 vendor/lib/libStDrvInt.so
-vendor/lib/libTouchInputVM.so
-vendor/lib/libTrustedInput.so
-vendor/lib/libTrustedInputTZ.so
-vendor/lib/libTrustedUI.so
-vendor/lib/libTrustedUITZ.so
 vendor/lib/libSecureUILib.so
 vendor/lib64/libGPQTEEC_vendor.so
 vendor/lib64/libGPTEE_vendor.so
 vendor/lib64/libQTEEConnector_vendor.so
 vendor/lib64/libSecureUILib.so
 vendor/lib64/libStDrvInt.so
-vendor/lib64/libTouchInputVM.so
-vendor/lib64/libTrustedInput.so
-vendor/lib64/libTrustedInputTZ.so
-vendor/lib64/libTrustedUI.so
-vendor/lib64/libTrustedUITZ.so
 vendor/lib/libsecureui.so
 vendor/lib/libsecureui_svcsock.so
 vendor/lib64/libsecureui.so
@@ -1291,18 +1234,11 @@ vendor/etc/init/init.time_daemon.rc
 vendor/lib/libtime_genoff.so
 vendor/lib64/libtime_genoff.so
 
-# Vibrator
-vendor/firmware/aw8697_haptic.bin
-vendor/firmware/aw8697_haptic_170.bin
-vendor/firmware/aw8697_haptic_235.bin
-
 # WiFi
 vendor/bin/cnss-daemon
 
 # WiFi Display
 -framework/WfdCommon.jar
-system_ext/bin/rtspclient
-system_ext/bin/rtspserver
 system_ext/bin/wfdservice
 system_ext/etc/init/wfdservice.rc
 system_ext/etc/permissions/wfd-system-ext-privapp-permissions-qti.xml
@@ -1313,7 +1249,6 @@ system_ext/lib/libmmosal.so
 system_ext/lib/libmmparser_lite.so
 system_ext/lib/libmmrtpdecoder.so
 system_ext/lib/libmmrtpencoder.so
-system_ext/lib/libwfdaac.so
 system_ext/lib/libwfdavenhancements.so
 system_ext/lib/libwfdcommonutils.so
 system_ext/lib/libwfdconfigutils.so

@@ -40,6 +40,10 @@ on early-init
     mkdir /bt_firmware 0771 system system
     symlink /data/tombstones /tombstones
 
+on property:sys.oplus.bootupgrade=1
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq 1843200
+    write /dev/kmsg "first boot, sys.oplus.bootupgrade = 1.  limit cpufreq."
+
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
     write /dev/stune/top-app/schedtune.sched_boost_no_override 1
@@ -51,6 +55,10 @@ on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+on property:sys.boot_completed=1 && property:sys.oplus.bootupgrade=1
+    write /dev/kmsg "first boot completed, sys.oplus.bootupgrade = 1. free cpufreq limit."
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq 4294967295
 
 on early-fs
     start vold
@@ -123,10 +131,6 @@ on boot
     write /dev/cpuset/background/cpus 0-5
 #endif
     write /dev/cpuset/system-background/cpus 0-7
-    
-# Restrict permissions to socket file 
-# to hide Magisk & co.
-    chmod 440 /proc/net/unix    
 
 # Add a cpuset for the camera daemon
 # We want all cores for camera
@@ -444,9 +448,3 @@ service dcvs-sh /vendor/bin/init.qti.dcvs.sh
 
 on property:vendor.dcvs.prop=1
    start dcvs-sh
-
-#FPC_fingerprint
-chown system system /sys/bus/platform/devices/soc:fpc1020/irq
-chown system system /sys/bus/platform/devices/soc:fpc1020/irq_enable
-chown system system /sys/bus/platform/devices/soc:fpc1020/wakelock_enable
-
